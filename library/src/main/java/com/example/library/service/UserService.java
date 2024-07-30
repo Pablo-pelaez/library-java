@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -28,18 +28,19 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
     }
 
-    public User registerUser(User user) {
+    public void registerUser(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new UserAlreadyExistsException("User with this email already exists.");
+            throw new UserAlreadyExistsException("User with this email already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
+    /*
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
-
+    */
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email).orElseThrow(() ->
                 new InvalidCredentialsException("Invalid email or password"));
