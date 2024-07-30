@@ -1,6 +1,7 @@
 package com.example.library.controller;
 
 import com.example.library.entity.Book;
+import com.example.library.exception.ResourceNotFoundException;
 import com.example.library.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +65,17 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, String>> deleteBook(@PathVariable Long id) {
-        bookService.deleteBook(id);
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Book deleted successfully");
-
-        return ResponseEntity.ok(response);
+    public ResponseEntity<Map<String, Object>> deleteBook(@PathVariable Long id) {
+        try {
+            bookService.deleteBook(id);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Book deleted successfully");
+            return ResponseEntity.ok(response);
+        } catch (ResourceNotFoundException e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+        }
     }
 
     @GetMapping("/search")
