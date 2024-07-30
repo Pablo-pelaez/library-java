@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .headers(headers -> headers
-                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin // Allow frames from the same origin.
+                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin // Allow the  frames from the same origin.
                         )
                 );
 
