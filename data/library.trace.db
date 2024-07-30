@@ -2,3 +2,27 @@
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "insert into book (author,title,[*]year,id) values (?,?,?,default)"; se esperaba "identifier"
 Syntax error in SQL statement "insert into book (author,title,[*]year,id) values (?,?,?,default)"; expected "identifier"; SQL statement:
 insert into book (author,title,year,id) values (?,?,?,default) [42001-224]
+2024-07-30 10:57:06.809047-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "insert into book (author,title,[*]year,id) values (?,?,?,default)"; se esperaba "identifier"
+Syntax error in SQL statement "insert into book (author,title,[*]year,id) values (?,?,?,default)"; expected "identifier"; SQL statement:
+insert into book (author,title,year,id) values (?,?,?,default) [42001-224]
+2024-07-30 11:18:36.409885-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE BOOK RENAME COLUMN [*]year TO publish_year"; se esperaba "identifier"
+Syntax error in SQL statement "ALTER TABLE BOOK RENAME COLUMN [*]year TO publish_year"; expected "identifier"; SQL statement:
+ALTER TABLE BOOK RENAME COLUMN year TO publish_year [42001-224]
+2024-07-30 11:18:53.993904-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE book RENAME COLUMN [*]year TO publish_year"; se esperaba "identifier"
+Syntax error in SQL statement "ALTER TABLE book RENAME COLUMN [*]year TO publish_year"; expected "identifier"; SQL statement:
+ALTER TABLE book RENAME COLUMN year TO publish_year [42001-224]
+2024-07-30 11:31:05.642559-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE book DROP COLUMN [*]year"; se esperaba "identifier"
+Syntax error in SQL statement "ALTER TABLE book DROP COLUMN [*]year"; expected "identifier"; SQL statement:
+ALTER TABLE book DROP COLUMN year [42001-224]
+2024-07-30 14:03:15.215903-05:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE book DROP COLUMN [*]year"; se esperaba "identifier"
+Syntax error in SQL statement "ALTER TABLE book DROP COLUMN [*]year"; expected "identifier"; SQL statement:
+ALTER TABLE book DROP COLUMN year [42001-224]
+2024-07-30 14:04:38.430298-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]USER_LIBRARY"; se esperaba "UPDATE"
+Syntax error in SQL statement "[*]USER_LIBRARY"; expected "UPDATE"; SQL statement:
+USER_LIBRARY [42001-224]

@@ -2,7 +2,7 @@ CREATE TABLE book (
                       id BIGINT AUTO_INCREMENT PRIMARY KEY,
                       title VARCHAR(255) NOT NULL,
                       author VARCHAR(255) NOT NULL,
-                      "year" INT NOT NULL
+                      publishYear INT NOT NULL
 );
 
 CREATE TABLE userLibrary (

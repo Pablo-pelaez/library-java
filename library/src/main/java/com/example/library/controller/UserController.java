@@ -1,5 +1,6 @@
 package com.example.library.controller;
 
+import com.example.library.config.JwtTokenUtil;
 import com.example.library.dto.LoginRequest;
 import com.example.library.entity.User;
 import com.example.library.exception.UserAlreadyExistsException;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -21,6 +23,9 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
@@ -35,10 +40,12 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestBody @Valid LoginRequest loginRequest) {
         try {
-            userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
-            return new ResponseEntity<>("Login successful.", HttpStatus.OK);
+            User user = userService.loginUser(loginRequest.getEmail(), loginRequest.getPassword());
+            String token = jwtTokenUtil.generateToken(user); // Generate JWT token
+            return ResponseEntity.ok(token); // Return the token
         } catch (InvalidCredentialsException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
         }
     }
+
 }

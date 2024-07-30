@@ -31,7 +31,7 @@ public class BookService {
         Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + id));
         book.setTitle(bookDetails.getTitle());
         book.setAuthor(bookDetails.getAuthor());
-        book.setYear(bookDetails.getYear());
+        book.setPublishYear(bookDetails.getPublishYear());
         return bookRepository.save(book);
     }
 
